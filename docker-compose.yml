@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./BACKEND
+    container_name: django_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./BACKEND:/app
+    environment:
+      - DEBUG=1
+    command: python manage.py runserver 0.0.0.0:8000
+    working_dir: /app/project
+    # restart: always
+
+  frontend:
+    build: ./FRONTEND
+    container_name: react_frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./FRONTEND:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    command: npm run dev -- --host
+    # restart: always
