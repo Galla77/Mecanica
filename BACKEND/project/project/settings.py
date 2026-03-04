@@ -158,3 +158,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'marcosgalla2@gmail.com')
 # Esto debe configurarse obligatoriamente en Render (Contraseña de Aplicación de Google de 16 letras)
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
+# Timeout para evitar que Render congele la aplicación (Render Free bloquea el puerto 587)
+EMAIL_TIMEOUT = 5
